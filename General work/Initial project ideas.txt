@@ -1,0 +1,15 @@
+25/09/2025 - Initial ideas
+    - Bamboo game
+        - like PvZ Zen Garden
+        - Main objective - grow bamboo, sell bamboo
+        - Features
+            - Weather affects growth
+            - Could add player-made sound effects
+            - Time-based bamboo growth? When player hasn't logged on for x amount of days, plant dies
+            - Selling bamboo gives player money
+                - money can buy skins or buffs
+        - Monitisation
+            - Ads
+            - Payment for more money when selling (2x multiplier?)
+            - Paying to keep growing bamboo when dead
+            - Ingame currency
