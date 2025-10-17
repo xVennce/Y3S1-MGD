@@ -34,8 +34,11 @@ public class DayNightAgent : MonoBehaviour {
     }
 
     private void ControlPPV() {
+        //This controls the transition of the PPV weight based on time of day
+        #region Transition Logic
         //For when it is Dusk
-        if (TimeCheckerAgent.GetDeviceHour() >= Dusk && TimeCheckerAgent.GetDeviceHour() < (Dusk + 1)) {
+        if (TimeCheckerAgent.GetDeviceHour() >= Dusk && TimeCheckerAgent.GetDeviceHour() < (Dusk + 1))
+        {
             PPV.weight = (float)TimeCheckerAgent.GetDeviceMins() / 60;
             //Add anything here that should become visable when it turns to dark
         }
@@ -46,7 +49,24 @@ public class DayNightAgent : MonoBehaviour {
             PPV.weight = 1 - (float)TimeCheckerAgent.GetDeviceMins() / 60;
             //Add anything here that should become visable when it turns to dark
         }
+        #endregion
 
+        //This handles immediate switching of PPV weight for when the player starts the game not during the transition periods
+        #region Immediate Logic 
+        //For when it is fully Night
+        if (TimeCheckerAgent.GetDeviceHour() >= (Dusk + 1) || TimeCheckerAgent.GetDeviceHour() < Dawn)
+        {
+            PPV.weight = 1;
+            //Add anything here that should become visable when it is fully dark
+        }
+
+        //For when it is fully Day
+        if (TimeCheckerAgent.GetDeviceHour() >= (Dawn + 1) && TimeCheckerAgent.GetDeviceHour() < Dusk)
+        {
+            PPV.weight = 0;
+            //Add anything here that should become visable when it is fully light
+        }
+        #endregion
     }
 
     IEnumerator WaitForDelay(float seconds) {
