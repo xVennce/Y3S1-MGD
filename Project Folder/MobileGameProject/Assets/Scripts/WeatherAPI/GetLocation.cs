@@ -10,6 +10,7 @@ public class GetLocation : MonoBehaviour {
     public LocationData DeviceLocationInfo;
     public float Latitude;
     public float Longitude;
+    public GetWeatherData getWeatherData;
 
     private void Start() {
         StartCoroutine(GetDeviceIP());
@@ -48,6 +49,8 @@ public class GetLocation : MonoBehaviour {
         DeviceLocationInfo = JsonUtility.FromJson<LocationData>(DeviceLocationRequest.downloadHandler.text);
         Longitude = DeviceLocationInfo.lon;
         Latitude = DeviceLocationInfo.lat;
+
+        getWeatherData.Begin();
     }
 
     [Serializable]
