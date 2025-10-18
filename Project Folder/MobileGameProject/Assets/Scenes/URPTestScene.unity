@@ -882,8 +882,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 603ebd14a5efe2a4cb9558accc17bdf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Money: 102
-  PlantGrowthStage: 2.65
+  Money: 0
+  PlantGrowthStage: 0
 --- !u!1 &855214062
 GameObject:
   m_ObjectHideFlags: 0
