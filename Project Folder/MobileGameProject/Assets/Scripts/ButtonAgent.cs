@@ -14,6 +14,7 @@ public class ButtonAgent : MonoBehaviour {
 
     [Header("Main Menu Scene Dependables")]
     [SerializeField] string GameSceneName;
+    [SerializeField] GameObject MainMenuUi;
 
     public void SaveData() {
         SaveLoadSystem.SavePlayer(gameData);
@@ -29,7 +30,13 @@ public class ButtonAgent : MonoBehaviour {
     }
 
     public void LoadGameScene() {
+        DeactivateUi(MainMenuUi);
+        VibrationAgent.HeavyHapticFeedback();
         StartCoroutine(LoadAsyncScene(GameSceneName));
+    }
+
+    private void DeactivateUi(GameObject SelectedUi) {
+        SelectedUi.SetActive(false);
     }
 
     /// <summary>
@@ -38,10 +45,15 @@ public class ButtonAgent : MonoBehaviour {
     /// <param name="Scene"></param>
     /// <returns></returns>
     IEnumerator LoadAsyncScene(string Scene) {
+        //In here should be a loading screen or anything that needs to be done during loading
+        Instantiate(LoadingScreen);
 
-        
+        //Time delay to see loading screen
+        yield return new WaitForSeconds(2.0f); 
+
         AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync(Scene);
 
+        //This while loop waits until the asynchronous scene fully loads
         while (!AsyncLoad.isDone) {
             yield return null;
         }
