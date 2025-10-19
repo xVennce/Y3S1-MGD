@@ -13,10 +13,11 @@ public class WeatherStateAgent : MonoBehaviour {
     public string TestName = "test";
 
     //Property to track current weather state and change effects when it changes
-    private string _CurrentWeatherState;
+    private string _CurrentWeatherState = "Clear";
     public string CurrentWeatherState {
         get => _CurrentWeatherState;
         set {
+            //Only change weather state and effects if the value is different
             if (_CurrentWeatherState != value) {
                 _CurrentWeatherState = value;
                 //This is purely for debugging purposes to see when the weather state changes
@@ -25,8 +26,6 @@ public class WeatherStateAgent : MonoBehaviour {
             }
         }
     }
-
-    
 
     #region Weather Condition Codes
     //Codes:
@@ -63,21 +62,24 @@ public class WeatherStateAgent : MonoBehaviour {
     }
 
     private void ChangeWeatherCondition() {
-        Debug.Log("Current Weather State: " + CurrentWeatherState);
         //switch case to activate weather effects based on CurrentWeatherState
         //if the state is not recognized, default to ClearEffect
         //default case is there since there are other weather conditions not handled here i.e Group 7xx: Atmosphere
         switch (CurrentWeatherState) {
             case "Rain":
+                Debug.Log("Current Weather State: " + CurrentWeatherState);
                 SetWeatherEffect(RainEffect);
                 break;
             case "Snow":
+                Debug.Log("Current Weather State: " + CurrentWeatherState);
                 SetWeatherEffect(SnowEffect);
                 break;
             case "Clear":
+                Debug.Log("Current Weather State: " + CurrentWeatherState);
                 SetWeatherEffect(ClearEffect);
                 break;
             case "Clouds":
+                Debug.Log("Current Weather State: " + CurrentWeatherState);
                 SetWeatherEffect(CloudyEffect);
                 break;
             default:
