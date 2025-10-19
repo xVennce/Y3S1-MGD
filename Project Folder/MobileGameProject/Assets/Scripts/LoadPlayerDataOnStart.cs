@@ -5,8 +5,6 @@ public class LoadPlayerDataOnStart : MonoBehaviour {
     [SerializeField] private GameVolumeData gameVolumeData;
     [SerializeField] private SettingsAgent settingsAgent;
 
-
-
     private void Start() {
         LoadPlayerData();
         LoadPlayerVolumeData();
@@ -39,6 +37,5 @@ public class LoadPlayerDataOnStart : MonoBehaviour {
         settingsAgent.SetGlobalAudio(Mathf.Pow(10f, gameVolumeData.GlobalVolume / 20f));
         settingsAgent.BackgroundVolumeSlider.value = Mathf.Pow(10f, gameVolumeData.BackgroundVolume / 20f);
         settingsAgent.SetBackgroundMusicAudio(Mathf.Pow(10f, gameVolumeData.BackgroundVolume / 20f));
-        
     }
 }

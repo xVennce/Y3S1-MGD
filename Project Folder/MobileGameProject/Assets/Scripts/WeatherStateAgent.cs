@@ -54,13 +54,10 @@ public class WeatherStateAgent : MonoBehaviour {
         if (TestName == "test") {
             CurrentWeatherState = DeviceWeatherData.CurrentWeatherDescription;
         }
-        
-
         if (TestName != "test") {
             CurrentWeatherState = TestName;
         }
     }
-
     private void ChangeWeatherCondition() {
         //switch case to activate weather effects based on CurrentWeatherState
         //if the state is not recognized, default to ClearEffect
@@ -88,7 +85,6 @@ public class WeatherStateAgent : MonoBehaviour {
                 break;
         }
     }
-
     private void SetWeatherEffect(Effect WeatherEffect) {
         WeatherEffect();
     }
