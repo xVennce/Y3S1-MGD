@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 public class DayNightAgent : MonoBehaviour {
@@ -7,7 +8,7 @@ public class DayNightAgent : MonoBehaviour {
     [SerializeField] Volume PPV;
 
     [Header("Time Delay Settings")]
-    [SerializeField] float SecondsForDelay = 600;
+    [SerializeField] float SecondsForDelay = 600.0f;
     [SerializeField] bool IsDelayFinished = true;
 
     [Header("Time: Dusk, Dawn Start/Finish")]
@@ -21,18 +22,14 @@ public class DayNightAgent : MonoBehaviour {
             CheckTime();
             StartCoroutine(WaitForDelay(SecondsForDelay));
         }
-
         ControlPPV();
     }
 
     private void CheckTime() {
-        Debug.Log("This was called");
-        Debug.Log("Hour: " + TimeCheckerAgent.GetDeviceHour());
-        Debug.Log("Minute: " + TimeCheckerAgent.GetDeviceMins());
+        Debug.Log("Day/Night time check was called");
+        Debug.Log("Hour: " + TimeCheckerAgent.GetDeviceHour() + " Minute: " + TimeCheckerAgent.GetDeviceMins()); 
         Debug.Log("Month: " + TimeCheckerAgent.GetDeviceMonth());
-
     }
-
     private void ControlPPV() {
         //This controls the transition of the PPV weight based on time of day
         #region Transition Logic
@@ -70,7 +67,6 @@ public class DayNightAgent : MonoBehaviour {
 
     }
     IEnumerator WaitForDelay(float seconds) {
-        Debug.Log("Started timer");
         yield return new WaitForSeconds(seconds);
         IsDelayFinished = true;
     }

@@ -2,14 +2,32 @@ using UnityEngine;
 
 using System;
 using System.Collections;
+using System.Diagnostics.Tracing;
 public class WeatherStateAgent : MonoBehaviour {    
     public GetWeatherData DeviceWeatherData;
+
     [Header("Weather Description")]
     public string WeatherDescription;
 
     [Header("Testing Variable - Change to simulate different weather conditions")]
     public string TestName = "test";
-    public string CurrentWeatherState;
+
+    //Property to track current weather state and change effects when it changes
+    private string _CurrentWeatherState;
+    public string CurrentWeatherState {
+        get => _CurrentWeatherState;
+        set {
+            if (_CurrentWeatherState != value) {
+                _CurrentWeatherState = value;
+                //This is purely for debugging purposes to see when the weather state changes
+                WeatherDescription = value;
+                ChangeWeatherCondition();
+            }
+        }
+    }
+
+    
+
     #region Weather Condition Codes
     //Codes:
     //Thunderstorm
@@ -19,50 +37,57 @@ public class WeatherStateAgent : MonoBehaviour {
     //Clear
     //Clouds
     #endregion
+    
     delegate void Effect();
 
     private void Start() {
         //Check if DeviceWeatherData is assigned
         if (DeviceWeatherData != null) {
             Debug.Log("WeatherStateAgent connected to GetWeatherData");
+            ChangeWeatherCondition();
         }
         else {
             Debug.LogError("WeatherStateAgent not connected to GetWeatherData");
+            SetWeatherEffect(ClearEffect);
         }
-
     }
     private void Update() {
-        CurrentWeatherState = DeviceWeatherData.CurrentWeatherDescription;
+        if (TestName == "test") {
+            CurrentWeatherState = DeviceWeatherData.CurrentWeatherDescription;
+        }
+        
 
         if (TestName != "test") {
-            Debug.Log("CurrentWeatherState was changed to: " + TestName);
             CurrentWeatherState = TestName;
         }
+    }
 
+    private void ChangeWeatherCondition() {
         Debug.Log("Current Weather State: " + CurrentWeatherState);
         //switch case to activate weather effects based on CurrentWeatherState
         //if the state is not recognized, default to ClearEffect
         //default case is there since there are other weather conditions not handled here i.e Group 7xx: Atmosphere
         switch (CurrentWeatherState) {
             case "Rain":
-                ActivateWeatherEffect(RainEffect);
+                SetWeatherEffect(RainEffect);
                 break;
             case "Snow":
-                ActivateWeatherEffect(SnowEffect);
+                SetWeatherEffect(SnowEffect);
                 break;
             case "Clear":
-                ActivateWeatherEffect(ClearEffect);
+                SetWeatherEffect(ClearEffect);
                 break;
             case "Clouds":
-                ActivateWeatherEffect(CloudyEffect);
+                SetWeatherEffect(CloudyEffect);
                 break;
             default:
-                ActivateWeatherEffect(ClearEffect);
+                Debug.Log("Current Weather State not recognized, defaulting to Clear Effect");
+                SetWeatherEffect(ClearEffect);
                 break;
         }
     }
 
-    private void ActivateWeatherEffect(Effect WeatherEffect) {
+    private void SetWeatherEffect(Effect WeatherEffect) {
         WeatherEffect();
     }
     private void RainEffect() {

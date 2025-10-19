@@ -6,14 +6,27 @@ using System.Collections;
 public class GetLocation : MonoBehaviour {
 
     private string DeviceIP;
-
+    
+    [Header("Device Location Data")]
     public LocationData DeviceLocationInfo;
+    public GetWeatherData getWeatherData;
     public float Latitude = 0.0f;
     public float Longitude = 0.0f;
-    public GetWeatherData getWeatherData;
+
+    [Header("")]
+    [SerializeField] private bool IsDelayFinished = true;
+    [SerializeField] private float SecondsForDelay = 600.0f;
 
     private void Start() {
         StartCoroutine(GetDeviceIP());
+    }
+
+    private void Update() {
+        if (IsDelayFinished == true) {
+            IsDelayFinished = false;
+            StartCoroutine(GetDeviceIP());
+            StartCoroutine(WaitForDelay(SecondsForDelay));
+        }
     }
 
     /// <summary>
@@ -51,6 +64,12 @@ public class GetLocation : MonoBehaviour {
         Latitude = DeviceLocationInfo.lat;
 
         getWeatherData.Init();
+    }
+
+    IEnumerator WaitForDelay(float seconds) {
+        Debug.Log("Started timer");
+        yield return new WaitForSeconds(seconds);
+        IsDelayFinished = true;
     }
 
     [Serializable]
