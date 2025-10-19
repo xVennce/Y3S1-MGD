@@ -13,8 +13,11 @@ public class ButtonAgent : MonoBehaviour {
     [SerializeField] SceneManager SceneManagement;
 
     [Header("Main Menu Scene Dependables")]
-    [SerializeField] string GameSceneName;
-    [SerializeField] GameObject MainMenuUi;
+    [SerializeField] string GameScene;
+    [SerializeField] string SettingScene;
+
+    [Header("Current Ui")]
+    [SerializeField] GameObject CurrentUi;
 
     public void SaveData() {
         SaveLoadSystem.SavePlayerData(gameData);
@@ -30,9 +33,14 @@ public class ButtonAgent : MonoBehaviour {
     }
 
     public void LoadGameScene() {
-        DeactivateUi(MainMenuUi);
+        DeactivateUi(CurrentUi);
         VibrationAgent.HeavyHapticFeedback();
-        StartCoroutine(LoadAsyncScene(GameSceneName));
+        StartCoroutine(LoadAsyncScene(GameScene));
+    }
+    public void LoadSettingsScene() {
+        DeactivateUi(CurrentUi);
+        VibrationAgent.HeavyHapticFeedback();
+        StartCoroutine(LoadAsyncScene(SettingScene));
     }
 
     private void DeactivateUi(GameObject SelectedUi) {
