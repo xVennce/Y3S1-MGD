@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dbba748e19e024e4aa7054a176ef9056
+guid: d3805d7e15c765442b9fd77fd53b4433
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Piedra
+  - Stampatello Faceto
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
