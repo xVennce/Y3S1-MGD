@@ -1768,8 +1768,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameData: {fileID: 741006714}
   LoadingScreen: {fileID: 0}
-  GameSceneName: 
-  MainMenuUi: {fileID: 0}
+  GameScene: 
+  SettingScene: 
+  CurrentUi: {fileID: 0}
 --- !u!1 &493668509
 GameObject:
   m_ObjectHideFlags: 0
@@ -3388,116 +3389,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175329256}
   m_CullTransparentMesh: 1
---- !u!1 &1225674856
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1225674857}
-  - component: {fileID: 1225674858}
-  - component: {fileID: 1225674859}
-  - component: {fileID: 1225674860}
-  m_Layer: 0
-  m_Name: WeatherAPI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1225674857
+--- !u!4 &1225674857 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1303822174707764331, guid: c662b1ee315920f439e9a649a793b45d, type: 3}
+  m_PrefabInstance: {fileID: 6477779147981191589}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225674856}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 493668510}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1225674858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225674856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4721b706e7e77064797657b8fc507583, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  APIKey: e6f5af8b75d1d538345d9e74894d4693
-  Info:
-    weather: []
-    main:
-      temp: 0
-      feels_like: 0
-      temp_min: 0
-      temp_max: 0
-      pressure: 0
-      humidity: 0
-    wind:
-      speed: 0
-      deg: 0
-    name: 
-  CurrentWeatherDescription: 
-  GetDeviceLocation: {fileID: 1225674859}
-  minutesBetweenUpdate: 10
---- !u!114 &1225674859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225674856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e6f667bc5b926244b4fa4c9a9b4102a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeviceLocationInfo:
-    status: 
-    country: 
-    countryCode: 
-    region: 
-    regionName: 
-    city: 
-    zip: 
-    lat: 0
-    lon: 0
-    timezone: 
-    isp: 
-    org: 
-    as: 
-    query: 
-  getWeatherData: {fileID: 1225674858}
-  Latitude: 0
-  Longitude: 0
-  IsDelayFinished: 0
-  SecondsForDelay: 600
---- !u!114 &1225674860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1225674856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d39b601e81b02c4fbaf698d2571bf4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeviceWeatherData: {fileID: 1225674858}
-  WeatherDescription: 
-  TestName: test
 --- !u!1 &1256343048
 GameObject:
   m_ObjectHideFlags: 0
@@ -5062,6 +4958,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1990390045}
   m_CullTransparentMesh: 1
+--- !u!1001 &6477779147981191589
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 493668510}
+    m_Modifications:
+    - target: {fileID: 1303822174707764331, guid: c662b1ee315920f439e9a649a793b45d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303822174707764331, guid: c662b1ee315920f439e9a649a793b45d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303822174707764331, guid: c662b1ee315920f439e9a649a793b45d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303822174707764331, guid: c662b1ee315920f439e9a649a793b45d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303822174707764331, guid: c662b1ee315920f439e9a649a793b45d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303822174707764331, guid: c662b1ee315920f439e9a649a793b45d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303822174707764331, guid: c662b1ee315920f439e9a649a793b45d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303822174707764331, guid: c662b1ee315920f439e9a649a793b45d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303822174707764331, guid: c662b1ee315920f439e9a649a793b45d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303822174707764331, guid: c662b1ee315920f439e9a649a793b45d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361185392101907837, guid: c662b1ee315920f439e9a649a793b45d, type: 3}
+      propertyPath: m_Name
+      value: WeatherAPI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c662b1ee315920f439e9a649a793b45d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
