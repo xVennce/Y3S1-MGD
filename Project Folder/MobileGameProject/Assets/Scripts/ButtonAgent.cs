@@ -6,6 +6,9 @@ public class ButtonAgent : MonoBehaviour {
     [Header("Game Data")]
     [SerializeField] GameData gameData;
 
+    [Header("Loading Screen")]
+    [SerializeField] GameObject LoadingScreen;
+
     [Header("Scene Management")]
     [SerializeField] SceneManager SceneManagement;
 
@@ -36,6 +39,7 @@ public class ButtonAgent : MonoBehaviour {
     /// <returns></returns>
     IEnumerator LoadAsyncScene(string Scene) {
 
+        
         AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync(Scene);
 
         while (!AsyncLoad.isDone) {
