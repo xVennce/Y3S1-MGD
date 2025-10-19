@@ -2,28 +2,36 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System;
 using System.Collections;
-using static UnityEngine.InputManagerEntry;
 
 public class GetWeatherData : MonoBehaviour {
 
-
-    public WeatherInfo Info;
-    public string APIKey;
-
-    public GetLocation GetDeviceLocation;
+    #region Private Variables
     private float Latitude;
     private float Longitude;
     private bool LocationInitialized;
     private float timer;
+    #endregion
+
+    [Header("API key")]
+    public string APIKey;
+
+    [Header("API Weather Information")]
+    public WeatherInfo Info;
+    public string CurrentWeatherDescription;
+
+    [Header("Location Reference")]
+    public GetLocation GetDeviceLocation;
+
+    [Header("Update Interval (minutes)")]
     public float minutesBetweenUpdate = 10f;
 
-    public void Begin() {
+    public void Init() {
         Latitude = GetDeviceLocation.Latitude;
         Longitude = GetDeviceLocation.Longitude;
         LocationInitialized = true;
     }
 
-    void Update() {                                                         
+    private void Update() {
         if (LocationInitialized) {
             if (timer <= 0) {
                 StartCoroutine(GetWeatherInfo());
@@ -35,28 +43,36 @@ public class GetWeatherData : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// This coroutine fetches weather information from the OpenWeatherMap API.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator GetWeatherInfo() {
-        var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + Latitude + "&lon=" + Longitude + "&appid" + APIKey + "units=metrics";
-        using UnityWebRequest www = UnityWebRequest.Get(url);
-        yield return www.SendWebRequest();
+        var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + Latitude + "&lon=" + Longitude + "&appid=" + APIKey + "&units=metric";
+        using UnityWebRequest DeviceWeatherRequest = UnityWebRequest.Get(url);
+        yield return DeviceWeatherRequest.SendWebRequest();
 
-        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError) {
-            Debug.LogError("Weather API error: " + www.error);
+        if (DeviceWeatherRequest.result == UnityWebRequest.Result.ConnectionError || DeviceWeatherRequest.result == UnityWebRequest.Result.ProtocolError) {
+            Debug.LogError("Weather API error: " + DeviceWeatherRequest.error);
             yield break;
         }
 
-        Info = JsonUtility.FromJson<WeatherInfo>(www.downloadHandler.text);
+        Info = JsonUtility.FromJson<WeatherInfo>(DeviceWeatherRequest.downloadHandler.text);
 
+        //this section logs the current weather description and temperature if it worked
         if (Info != null && Info.weather != null && Info.weather.Length > 0) {
-            string Description = Info.weather[0].description;
+            //main weather description gives more general condition (e.g., Rain, Clear) than description
+            string Description = Info.weather[0].main;
+            CurrentWeatherDescription = Description;
             double Temperature = Info.main.temp;
             Debug.Log("Current weather: " + Description + ", " + Temperature + "°C");
         }
         else {
             Debug.Log("Weather data unavailable.");
         }
-    }
+    }   
 
+    #region Data Classes
     [Serializable]
     public class WeatherInfo {
         public Weather[] weather;
@@ -87,5 +103,6 @@ public class GetWeatherData : MonoBehaviour {
         public float speed;
         public int deg;
     }
+    #endregion
 }
 

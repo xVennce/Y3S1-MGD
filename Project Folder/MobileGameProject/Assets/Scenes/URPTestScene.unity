@@ -1298,6 +1298,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 741006714}
+--- !u!1 &493668509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 493668510}
+  m_Layer: 0
+  m_Name: -----API-----
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &493668510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493668509}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1225674857}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &532459410
 GameObject:
   m_ObjectHideFlags: 0
@@ -2366,6 +2398,115 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175329256}
   m_CullTransparentMesh: 1
+--- !u!1 &1225674856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1225674857}
+  - component: {fileID: 1225674858}
+  - component: {fileID: 1225674859}
+  - component: {fileID: 1225674860}
+  m_Layer: 0
+  m_Name: WeatherAPI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1225674857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225674856}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 493668510}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1225674858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225674856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4721b706e7e77064797657b8fc507583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  APIKey: e6f5af8b75d1d538345d9e74894d4693
+  Info:
+    weather: []
+    main:
+      temp: 0
+      feels_like: 0
+      temp_min: 0
+      temp_max: 0
+      pressure: 0
+      humidity: 0
+    wind:
+      speed: 0
+      deg: 0
+    name: 
+  CurrentWeatherDescription: 
+  GetDeviceLocation: {fileID: 1225674859}
+  minutesBetweenUpdate: 10
+--- !u!114 &1225674859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225674856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e6f667bc5b926244b4fa4c9a9b4102a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeviceLocationInfo:
+    status: 
+    country: 
+    countryCode: 
+    region: 
+    regionName: 
+    city: 
+    zip: 
+    lat: 0
+    lon: 0
+    timezone: 
+    isp: 
+    org: 
+    as: 
+    query: 
+  Latitude: 0
+  Longitude: 0
+  getWeatherData: {fileID: 1225674858}
+--- !u!114 &1225674860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225674856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d39b601e81b02c4fbaf698d2571bf4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeviceWeatherData: {fileID: 1225674858}
+  WeatherDescription: 
+  TestName: test
+  CurrentWeatherState: 
 --- !u!1 &1256343048
 GameObject:
   m_ObjectHideFlags: 0
@@ -3464,7 +3605,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 961739753}
-  - {fileID: 1256343049}
+  - {fileID: 493668510}
   - {fileID: 1474924859}
+  - {fileID: 1256343049}
   - {fileID: 1866740050}
   - {fileID: 1091449422}

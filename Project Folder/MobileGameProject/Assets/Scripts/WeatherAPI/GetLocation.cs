@@ -8,8 +8,8 @@ public class GetLocation : MonoBehaviour {
     private string DeviceIP;
 
     public LocationData DeviceLocationInfo;
-    public float Latitude;
-    public float Longitude;
+    public float Latitude = 0.0f;
+    public float Longitude = 0.0f;
     public GetWeatherData getWeatherData;
 
     private void Start() {
@@ -50,7 +50,7 @@ public class GetLocation : MonoBehaviour {
         Longitude = DeviceLocationInfo.lon;
         Latitude = DeviceLocationInfo.lat;
 
-        getWeatherData.Begin();
+        getWeatherData.Init();
     }
 
     [Serializable]
