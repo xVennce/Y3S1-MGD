@@ -55,7 +55,7 @@ public static class SaveLoadSystem {
         else {
             Debug.LogError("Save file not found in " + FullPath);
             Debug.Log("Creating new save file...");
-            SaveLoadSystem.SavePlayer(new GameData());
+            SavePlayer(new GameData());
             return null;
         }
     }
