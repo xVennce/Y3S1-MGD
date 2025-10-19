@@ -13,7 +13,7 @@ public static class SaveLoadSystem {
     /// This method saves the player's game data to a file.
     /// </summary>
     /// <param name="gameData"></param>
-    public static void SavePlayer(GameData gameData) {
+    public static void SavePlayerData(GameData gameData) {
 
         BinaryFormatter Formatter = new BinaryFormatter();
         //This method of getting the path just makes path constructors across different OS have less problems.
@@ -29,10 +29,23 @@ public static class SaveLoadSystem {
             Debug.Log("Successfully Saved Data to " + FullPath);
         }
     }
-    public static void CreateBlankSave() {
+    public static void SavePlayerVolumeData(GameVolumeData gameVolumeData) {
 
+        BinaryFormatter Formatter = new BinaryFormatter();
+        //This method of getting the path just makes path constructors across different OS have less problems.
+        string Path = Application.persistentDataPath;
+        string FileName = "PlayerSoundData.data";
+        string FullPath = System.IO.Path.Combine(Path, FileName);
+
+        //Adapted the code in the tutorial to use a using statement to automatically close the file stream.
+        //This is generally safer and cleaner as it auto closes the stream.
+        using (FileStream stream = new FileStream(FullPath, FileMode.Create)) {
+            PlayerSoundData data = new PlayerSoundData(gameVolumeData);
+            Formatter.Serialize(stream, data);
+            Debug.Log("Successfully Saved Sound Data to " + FullPath);
+        }
     }
-    public static PlayerData LoadPlayer() {
+    public static PlayerData LoadPlayerData() {
 
         //This method of getting the path just makes path constructors across different OS have less problems.
         string Path = Application.persistentDataPath;
@@ -55,7 +68,34 @@ public static class SaveLoadSystem {
         else {
             Debug.LogError("Save file not found in " + FullPath);
             Debug.Log("Creating new save file...");
-            SavePlayer(new GameData());
+            SavePlayerData(new GameData());
+            return null;
+        }
+    }
+
+    public static PlayerSoundData LoadPlayerSoundData() {
+
+        //This method of getting the path just makes path constructors across different OS have less problems.
+        string Path = Application.persistentDataPath;
+        string FileName = "PlayerSoundData.data";
+        string FullPath = System.IO.Path.Combine(Path, FileName);
+
+        if (File.Exists(FullPath)) {
+            Debug.Log("Sound save file found in " + FullPath);
+
+            BinaryFormatter Formatter = new BinaryFormatter();
+
+            //Adapted the code in the tutorial to use a using statement to automatically close the file stream.
+            //This is generally safer and cleaner as it auto closes the stream.
+            using (FileStream stream = new FileStream(FullPath, FileMode.Open)) {
+                PlayerSoundData data = Formatter.Deserialize(stream) as PlayerSoundData;
+                return data;
+            }
+        }
+        else {
+            Debug.LogError("Sound save file not found in " + FullPath);
+            Debug.Log("Creating new sound save file...");
+            SavePlayerVolumeData(new GameVolumeData());
             return null;
         }
     }

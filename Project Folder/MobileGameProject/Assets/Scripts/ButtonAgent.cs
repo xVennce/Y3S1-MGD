@@ -17,10 +17,10 @@ public class ButtonAgent : MonoBehaviour {
     [SerializeField] GameObject MainMenuUi;
 
     public void SaveData() {
-        SaveLoadSystem.SavePlayer(gameData);
+        SaveLoadSystem.SavePlayerData(gameData);
     }
     public void LoadData() {
-        PlayerData data = SaveLoadSystem.LoadPlayer();
+        PlayerData data = SaveLoadSystem.LoadPlayerData();
         if (data != null) {
             gameData.Money = data.Money;
             gameData.PlantGrowthStage = data.CurrentPlantGrowthStage;
