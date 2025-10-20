@@ -25,7 +25,6 @@ public class PassiveGrowth : MonoBehaviour {
         }
 
     }
-
     private void CheckWeather() {
         switch (WeatherDescription.CurrentWeatherState) {
             case "Sunny":
