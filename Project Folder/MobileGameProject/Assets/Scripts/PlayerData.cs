@@ -4,7 +4,8 @@ using UnityEngine;
 
 [System.Serializable]
 public class PlayerData {
-    public int Money, TotalPlantsSold;
+    public float Money;
+    public int TotalPlantsSold;
     public float TimeSinceLastOpened, CurrentPlantGrowthStage;
 
     public PlayerData(GameData gameData) {

@@ -20,7 +20,8 @@ public class UpdateUi : MonoBehaviour {
         WeatherText.text = WeatherDescription.WeatherDescription;
     }
     private void UpdateMoneyText() {
-        MoneyText.text = PlayerGameData.Money.ToString();
+        //Should display money as whole number even though it is a float
+        MoneyText.text = ((int)PlayerGameData.Money).ToString();
     }
     private void UpdateGrowthPercentText() {
         GrowthPercentText.text = PlayerGameData.PlantGrowthStage.ToString("F1") + "%";

@@ -1,6 +1,6 @@
 using UnityEngine;
 
 public class GameData : MonoBehaviour {
-    public int Money;
+    public float Money;
     public float PlantGrowthStage;
 }   
