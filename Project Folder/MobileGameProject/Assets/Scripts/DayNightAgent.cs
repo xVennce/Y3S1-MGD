@@ -14,6 +14,11 @@ public class DayNightAgent : MonoBehaviour {
     [SerializeField] int Dusk = 21;
     [SerializeField] int Dawn = 6;
 
+    private void Start() {
+        //Initial check when the game starts
+        CheckTime();
+        ControlPPV();
+    }
     private void FixedUpdate() {
         //Checks time then waits for a delay
         if (IsDelayFinished == true) {
