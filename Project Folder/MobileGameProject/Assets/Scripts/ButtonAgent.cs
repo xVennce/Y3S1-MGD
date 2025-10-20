@@ -57,9 +57,15 @@ public class ButtonAgent : MonoBehaviour {
         Instantiate(LoadingScreen);
 
         //Time delay to see loading screen
-        yield return new WaitForSeconds(2.0f); 
+        yield return new WaitForSeconds(2.0f);
+
+        GameObject loadingScreen = GameObject.FindWithTag("LoadingScreen");
+        if (loadingScreen != null) {
+            Destroy(loadingScreen);
+        }
 
         AsyncOperation AsyncLoad = SceneManager.LoadSceneAsync(Scene);
+
 
         //This while loop waits until the asynchronous scene fully loads
         while (!AsyncLoad.isDone) {
