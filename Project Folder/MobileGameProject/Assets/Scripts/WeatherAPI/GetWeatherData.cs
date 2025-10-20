@@ -48,7 +48,7 @@ public class GetWeatherData : MonoBehaviour {
     /// </summary>
     /// <returns></returns>
     private IEnumerator GetWeatherInfo() {
-        var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + Latitude + "&lon=" + Longitude + "&appid=" + APIKey + "&units=metric";
+        string url = "https://api.openweathermap.org/data/2.5/weather?lat=" + Latitude + "&lon=" + Longitude + "&appid=" + APIKey + "&units=metric";
         using UnityWebRequest DeviceWeatherRequest = UnityWebRequest.Get(url);
         yield return DeviceWeatherRequest.SendWebRequest();
 

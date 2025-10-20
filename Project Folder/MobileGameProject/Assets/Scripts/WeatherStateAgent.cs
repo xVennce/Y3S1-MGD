@@ -9,6 +9,15 @@ public class WeatherStateAgent : MonoBehaviour {
     [Header("Weather Description")]
     public string WeatherDescription;
 
+    [Header("Weather Effects")]
+    public ParticleSystem RainParticleSystem;
+    public ParticleSystem SnowParticleSystem;
+
+    private ParticleSystem.MainModule RainMain;
+    //thunder uses the same emissions as rain
+    private ParticleSystem.EmissionModule RainEmissions;
+    private ParticleSystem.EmissionModule SnowEmissions;
+
     [Header("Testing Variable - Change to simulate different weather conditions")]
     public string TestName = "test";
 
@@ -37,9 +46,14 @@ public class WeatherStateAgent : MonoBehaviour {
     //Clouds
     #endregion
     
-    delegate void Effect();
+    delegate void EnableEffect();
 
     private void Start() {
+        //Initialize Particle System Modules
+        RainMain = RainParticleSystem.main;
+        RainEmissions = RainParticleSystem.emission;
+        SnowEmissions = SnowParticleSystem.emission;
+
         //Check if DeviceWeatherData is assigned
         if (DeviceWeatherData != null) {
             Debug.Log("WeatherStateAgent connected to GetWeatherData");
@@ -47,7 +61,7 @@ public class WeatherStateAgent : MonoBehaviour {
         }
         else {
             Debug.LogError("WeatherStateAgent not connected to GetWeatherData");
-            SetWeatherEffect(ClearEffect);
+            DisableCurrentWeatherEffects(ClearEffect);
         }
     }
     private void Update() {
@@ -65,34 +79,55 @@ public class WeatherStateAgent : MonoBehaviour {
         switch (CurrentWeatherState) {
             case "Rain":
                 Debug.Log("Current Weather State: " + CurrentWeatherState);
-                SetWeatherEffect(RainEffect);
+                DisableCurrentWeatherEffects(RainEffect);
+                break;
+            case "Thunderstorm":
+                Debug.Log("Current Weather State: " + CurrentWeatherState);
+                DisableCurrentWeatherEffects(ThunderEffect);
                 break;
             case "Snow":
                 Debug.Log("Current Weather State: " + CurrentWeatherState);
-                SetWeatherEffect(SnowEffect);
+                DisableCurrentWeatherEffects(SnowEffect);
                 break;
             case "Clear":
                 Debug.Log("Current Weather State: " + CurrentWeatherState);
-                SetWeatherEffect(ClearEffect);
+                DisableCurrentWeatherEffects(ClearEffect);
                 break;
             case "Clouds":
                 Debug.Log("Current Weather State: " + CurrentWeatherState);
-                SetWeatherEffect(CloudyEffect);
+                DisableCurrentWeatherEffects(CloudyEffect);
                 break;
             default:
                 Debug.Log("Current Weather State not recognized, defaulting to Clear Effect");
-                SetWeatherEffect(ClearEffect);
+                DisableCurrentWeatherEffects(ClearEffect);
                 break;
         }
     }
-    private void SetWeatherEffect(Effect WeatherEffect) {
-        WeatherEffect();
+    private void DisableCurrentWeatherEffects(EnableEffect WeatherParticleSystem) {
+        RainEmissions.enabled = false;
+        SnowEmissions.enabled = false;
+        //var ThunderEmissions;
+        //var ClearEmissions;
+        //var CloudyEmissions;
+
+        WeatherParticleSystem();
     }
     private void RainEffect() {
         Debug.Log("Rain Effect Activated");
+        RainEmissions.enabled = true;
+        RainMain.simulationSpeed = 3.0f;
+        RainMain.maxParticles = 50;
+        
+    }
+    private void ThunderEffect() {
+        Debug.Log("Thunder Effect Activated");
+        RainEmissions.enabled = true;
+        RainMain.simulationSpeed = 5.0f;
+        RainMain.maxParticles = 250;
     }
     private void SnowEffect() {
         Debug.Log("Snow Effect Activated");
+        SnowEmissions.enabled = true;
     }
     private void ClearEffect() {
         Debug.Log("Clear Effect Activated");
