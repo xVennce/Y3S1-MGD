@@ -36,6 +36,10 @@ public class PassiveGrowth : MonoBehaviour {
                 Debug.Log("Rainy weather detected! Increasing growth rate to 1.5x.");
                 WeatherInfluenceModifier = 1.5f;
                 break;
+            case "Thunderstorm":
+                Debug.Log("Thunderstorm weather detected! Increasing growth rate to 1.5x.");
+                WeatherInfluenceModifier = 1.5f;
+                break;
             case "Snow":
                 Debug.Log("Snowy weather detected! Decreasing growth rate to 0.75x.");
                 WeatherInfluenceModifier = 0.75f;
