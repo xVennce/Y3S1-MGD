@@ -14,7 +14,8 @@ public class DayNightAgent : MonoBehaviour {
     [SerializeField] int Dusk = 21;
     [SerializeField] int Dawn = 6;
 
-    private void Start() {
+    private void Start()
+    {
         //Initial check when the game starts
         CheckTime();
         ControlPPV();

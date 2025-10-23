@@ -1,12 +1,13 @@
 using UnityEngine;
 using System;
 
-
-public class TimeCheckerAgent : MonoBehaviour {
+public class TimeCheckerAgent : MonoBehaviour
+{
     /// <summary>
     /// This function gets the device minute as an integer (0-59)
     /// </summary>
-    public static int GetDeviceMins() {
+    public static int GetDeviceMins()
+    {
         DateTime Temp = DateTime.Now;
         return Temp.Minute;
     }

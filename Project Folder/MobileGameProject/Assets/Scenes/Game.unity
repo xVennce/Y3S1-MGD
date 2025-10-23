@@ -7859,7 +7859,7 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: 0
+  m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
@@ -9207,7 +9207,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1309689057}
   - component: {fileID: 1309689058}
-  - component: {fileID: 1309689059}
   m_Layer: 0
   m_Name: OnStart
   m_TagString: Untagged
@@ -9245,18 +9244,6 @@ MonoBehaviour:
   gameData: {fileID: 741006714}
   gameVolumeData: {fileID: 883554033}
   settingsAgent: {fileID: 1577398475}
---- !u!114 &1309689059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1309689056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 862fd18568415a84197be85295bd4b60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1316134821
 GameObject:
   m_ObjectHideFlags: 0
