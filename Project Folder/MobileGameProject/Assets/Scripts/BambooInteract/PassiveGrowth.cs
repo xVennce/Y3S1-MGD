@@ -29,31 +29,31 @@ public class PassiveGrowth : MonoBehaviour {
     private void CheckWeather() {
         switch (WeatherDescription.CurrentWeatherState) {
             case "Sunny":
-                Debug.Log("Sunny weather detected! Increasing growth rate to 1.25x.");
+                //Debug.Log("Sunny weather detected! Increasing growth rate to 1.25x.");
                 WeatherInfluenceModifier = 1.25f;
                 break;
             case "Rain":
-                Debug.Log("Rainy weather detected! Increasing growth rate to 1.5x.");
+                //Debug.Log("Rainy weather detected! Increasing growth rate to 1.5x.");
                 WeatherInfluenceModifier = 1.5f;
                 break;
             case "Thunderstorm":
-                Debug.Log("Thunderstorm weather detected! Increasing growth rate to 1.5x.");
+                //Debug.Log("Thunderstorm weather detected! Increasing growth rate to 1.5x.");
                 WeatherInfluenceModifier = 1.5f;
                 break;
             case "Snow":
-                Debug.Log("Snowy weather detected! Decreasing growth rate to 0.75x.");
+                //Debug.Log("Snowy weather detected! Decreasing growth rate to 0.75x.");
                 WeatherInfluenceModifier = 0.75f;
                 break;
             case "Clear":
-                Debug.Log("Clear weather detected! Normal growth rate.");
+                //Debug.Log("Clear weather detected! Normal growth rate.");
                 WeatherInfluenceModifier = 1.0f;
                 break;
             case "Clouds":
-                Debug.Log("Cloudy weather detected! Slightly decreasing growth rate to 0.9x.");
+                //Debug.Log("Cloudy weather detected! Slightly decreasing growth rate to 0.9x.");
                 WeatherInfluenceModifier = 0.9f;
                 break;
             default:
-                Debug.Log("Unrecognized weather condition. Defaulting to normal growth rate.");
+                //Debug.Log("Unrecognized weather condition. Defaulting to normal growth rate.");
                 WeatherInfluenceModifier = 1.0f;
                 break;
         }

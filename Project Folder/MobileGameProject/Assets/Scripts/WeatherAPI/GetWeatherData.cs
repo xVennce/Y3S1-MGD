@@ -65,7 +65,6 @@ public class GetWeatherData : MonoBehaviour {
             string Description = Info.weather[0].main;
             CurrentWeatherDescription = Description;
             double Temperature = Info.main.temp;
-            Debug.Log("Current weather: " + Description + ", " + Temperature + "°C");
         }
         else {
             Debug.Log("Weather data unavailable.");

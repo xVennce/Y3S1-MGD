@@ -78,30 +78,25 @@ public class WeatherStateAgent : MonoBehaviour {
         //default case is there since there are other weather conditions not handled here i.e Group 7xx: Atmosphere
         switch (CurrentWeatherState) {
             case "Rain":
-                Debug.Log("Current Weather State: " + CurrentWeatherState);
                 DisableCurrentWeatherEffects(RainEffect);
                 break;
             case "Thunderstorm":
-                Debug.Log("Current Weather State: " + CurrentWeatherState);
                 DisableCurrentWeatherEffects(ThunderEffect);
                 break;
             case "Snow":
-                Debug.Log("Current Weather State: " + CurrentWeatherState);
                 DisableCurrentWeatherEffects(SnowEffect);
                 break;
             case "Clear":
-                Debug.Log("Current Weather State: " + CurrentWeatherState);
                 DisableCurrentWeatherEffects(ClearEffect);
                 break;
             case "Clouds":
-                Debug.Log("Current Weather State: " + CurrentWeatherState);
                 DisableCurrentWeatherEffects(CloudyEffect);
                 break;
             default:
-                Debug.Log("Current Weather State not recognized, defaulting to Clear Effect");
                 DisableCurrentWeatherEffects(ClearEffect);
                 break;
         }
+        Debug.Log("Current Weather State: " + CurrentWeatherState);
     }
     private void DisableCurrentWeatherEffects(EnableEffect WeatherParticleSystem) {
         RainEmissions.enabled = false;
@@ -113,26 +108,21 @@ public class WeatherStateAgent : MonoBehaviour {
         WeatherParticleSystem();
     }
     private void RainEffect() {
-        Debug.Log("Rain Effect Activated");
         RainEmissions.enabled = true;
         RainMain.simulationSpeed = 3.0f;
         RainMain.maxParticles = 50;
         
     }
     private void ThunderEffect() {
-        Debug.Log("Thunder Effect Activated");
         RainEmissions.enabled = true;
         RainMain.simulationSpeed = 5.0f;
         RainMain.maxParticles = 250;
     }
     private void SnowEffect() {
-        Debug.Log("Snow Effect Activated");
         SnowEmissions.enabled = true;
     }
     private void ClearEffect() {
-        Debug.Log("Clear Effect Activated");
     }
     private void CloudyEffect() {
-        Debug.Log("Cloudy Effect Activated");
     }
 }

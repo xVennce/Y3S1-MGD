@@ -67,7 +67,6 @@ public static class SaveLoadSystem {
         }
         else {
             Debug.LogError("Save file not found in " + FullPath);
-            Debug.Log("Creating new save file...");
             SavePlayerData(new GameData());
             return null;
         }
@@ -94,7 +93,6 @@ public static class SaveLoadSystem {
         }
         else {
             Debug.LogError("Sound save file not found in " + FullPath);
-            Debug.Log("Creating new sound save file...");
             SavePlayerVolumeData(new GameVolumeData());
             return null;
         }

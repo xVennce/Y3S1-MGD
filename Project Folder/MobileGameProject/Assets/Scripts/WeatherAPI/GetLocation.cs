@@ -43,7 +43,6 @@ public class GetLocation : MonoBehaviour {
         }
 
         DeviceIP = DeviceIPRequest.downloadHandler.text;
-        Debug.Log("Device IP: " + DeviceIP);
         StartCoroutine(GetDeviceCoordinates());
     }
     /// <summary>
@@ -67,7 +66,6 @@ public class GetLocation : MonoBehaviour {
     }
 
     IEnumerator WaitForDelay(float seconds) {
-        Debug.Log("Started timer");
         yield return new WaitForSeconds(seconds);
         IsDelayFinished = true;
     }

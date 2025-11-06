@@ -14,26 +14,17 @@ public class DayNightAgent : MonoBehaviour {
     [SerializeField] int Dusk = 21;
     [SerializeField] int Dawn = 6;
 
-    private void Start()
-    {
+    private void Start() {
         //Initial check when the game starts
-        CheckTime();
         ControlPPV();
     }
     private void FixedUpdate() {
         //Checks time then waits for a delay
         if (IsDelayFinished == true) {
             IsDelayFinished = false;
-            CheckTime();
             StartCoroutine(WaitForDelay(SecondsForDelay));
         }
         ControlPPV();
-    }
-
-    private void CheckTime() {
-        Debug.Log("Day/Night time check was called");
-        Debug.Log("Hour: " + TimeCheckerAgent.GetDeviceHour() + " Minute: " + TimeCheckerAgent.GetDeviceMins()); 
-        Debug.Log("Month: " + TimeCheckerAgent.GetDeviceMonth());
     }
     private void ControlPPV() {
         //This controls the transition of the PPV weight based on time of day
