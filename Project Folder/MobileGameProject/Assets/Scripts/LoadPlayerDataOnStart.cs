@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class LoadPlayerDataOnStart : MonoBehaviour {
@@ -5,9 +6,12 @@ public class LoadPlayerDataOnStart : MonoBehaviour {
     [SerializeField] private GameVolumeData gameVolumeData;
     [SerializeField] private SettingsAgent settingsAgent;
 
+    public Boolean HasLoaded = false;
     private void Start() {
         LoadPlayerData();
         LoadPlayerVolumeData();
+        HasLoaded = true;
+        SetVolumeSliders();
     }
     private void LoadPlayerData() {
         PlayerData data = SaveLoadSystem.LoadPlayerData();
@@ -22,7 +26,7 @@ public class LoadPlayerDataOnStart : MonoBehaviour {
         if (data != null) {
             gameVolumeData.GlobalVolume = data.PlayerGlobalVolume;
             gameVolumeData.BackgroundVolume = data.PlayerBackgroundVolume;
-            SetVolumeSliders();
+            Debug.Log("Player Sound Data Loaded");
         }
     }
     private void SetVolumeSliders() {
