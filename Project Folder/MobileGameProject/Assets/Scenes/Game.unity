@@ -9244,6 +9244,7 @@ MonoBehaviour:
   gameData: {fileID: 741006714}
   gameVolumeData: {fileID: 883554033}
   settingsAgent: {fileID: 1577398475}
+  HasLoaded: 0
 --- !u!1 &1316134821
 GameObject:
   m_ObjectHideFlags: 0
@@ -10001,6 +10002,7 @@ MonoBehaviour:
   MasterAudioMixer: {fileID: 24100000, guid: d3a1473b1a28e8a4297751ec8114c8a7, type: 2}
   BackgroundAudioMixer: {fileID: 24100000, guid: 892c4774cf55b4c44967b282a4deca9a, type: 2}
   gameVolumeData: {fileID: 883554033}
+  OnStartCheck: {fileID: 1309689058}
   GlobalVolumeSlider: {fileID: 1296046737}
   BackgroundVolumeSlider: {fileID: 960801645}
 --- !u!4 &1577398476
