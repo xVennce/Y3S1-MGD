@@ -5,7 +5,6 @@ using UnityEngine;
 public class PassiveGrowth : MonoBehaviour {
 
     [Header("References")]
-    [SerializeField] private GameData PlayerGameData;
     [SerializeField] private WeatherStateAgent WeatherDescription;
 
     [Header("Growth Settings")]
@@ -27,44 +26,23 @@ public class PassiveGrowth : MonoBehaviour {
     }
 
     private void CheckWeather() {
-        switch (WeatherDescription.CurrentWeatherState) {
-            case "Sunny":
-                //Debug.Log("Sunny weather detected! Increasing growth rate to 1.25x.");
-                WeatherInfluenceModifier = 1.25f;
-                break;
-            case "Rain":
-                //Debug.Log("Rainy weather detected! Increasing growth rate to 1.5x.");
-                WeatherInfluenceModifier = 1.5f;
-                break;
-            case "Thunderstorm":
-                //Debug.Log("Thunderstorm weather detected! Increasing growth rate to 1.5x.");
-                WeatherInfluenceModifier = 1.5f;
-                break;
-            case "Snow":
-                //Debug.Log("Snowy weather detected! Decreasing growth rate to 0.75x.");
-                WeatherInfluenceModifier = 0.75f;
-                break;
-            case "Clear":
-                //Debug.Log("Clear weather detected! Normal growth rate.");
-                WeatherInfluenceModifier = 1.0f;
-                break;
-            case "Clouds":
-                //Debug.Log("Cloudy weather detected! Slightly decreasing growth rate to 0.9x.");
-                WeatherInfluenceModifier = 0.9f;
-                break;
-            default:
-                //Debug.Log("Unrecognized weather condition. Defaulting to normal growth rate.");
-                WeatherInfluenceModifier = 1.0f;
-                break;
-        }
+        WeatherInfluenceModifier = WeatherDescription.CurrentWeatherState switch {
+            "Sunny"         => 1.25f,//Debug.Log("Sunny weather detected! Increasing growth rate to 1.25x.");
+            "Rain"          => 1.5f,//Debug.Log("Rainy weather detected! Increasing growth rate to 1.5x.");
+            "Thunderstorm"  => 1.5f,//Debug.Log("Thunderstorm weather detected! Increasing growth rate to 1.5x.");
+            "Snow"          => 0.75f,//Debug.Log("Snowy weather detected! Decreasing growth rate to 0.75x.");
+            "Clear"         => 1.0f,//Debug.Log("Clear weather detected! Normal growth rate.");
+            "Clouds"        => 0.9f,//Debug.Log("Cloudy weather detected! Slightly decreasing growth rate to 0.9x.");
+            _               => 1.0f,//Debug.Log("Unrecognized weather condition. Defaulting to normal growth rate.");
+        };
     }
 
     private void ApplyPassiveGrowth() {
         CheckWeather();
         float growthAmount = BaseGrowthAmount * WeatherInfluenceModifier;
-        PlayerGameData.PlantGrowthStage += growthAmount;
-        PlayerGameData.PlantGrowthStage = Mathf.Clamp(PlayerGameData.PlantGrowthStage, 0.0f, 100.0f);
-        SaveLoadSystem.SavePlayerData(PlayerGameData);
+        LoadDataOnStart.CurrentData.plantGrowthStage += growthAmount;
+        LoadDataOnStart.CurrentData.plantGrowthStage = Mathf.Clamp(LoadDataOnStart.CurrentData.plantGrowthStage, 0.0f, 100.0f);
+        SaveLoadSystem.Save(LoadDataOnStart.CurrentData);
     }
     private IEnumerator WaitXSeconds(float seconds, Func function) {
         function();

@@ -9,8 +9,6 @@ public class UpdateUi : MonoBehaviour {
     [SerializeField] private TMPro.TextMeshProUGUI GrowthPercentText;
     [SerializeField] private TMPro.TextMeshProUGUI WeatherText;
     [SerializeField] private WeatherStateAgent WeatherDescription;
-    [SerializeField] private GameData PlayerGameData;
-
     private void Update() {
         UpdateMoneyText();
         UpdateGrowthPercentText();
@@ -21,9 +19,9 @@ public class UpdateUi : MonoBehaviour {
     }
     private void UpdateMoneyText() {
         //Should display money as whole number even though it is a float
-        MoneyText.text = ((int)PlayerGameData.Money).ToString();
+        MoneyText.text = LoadDataOnStart.CurrentData.money.ToString();
     }
     private void UpdateGrowthPercentText() {
-        GrowthPercentText.text = PlayerGameData.PlantGrowthStage.ToString("F1") + "%";
+        GrowthPercentText.text = LoadDataOnStart.CurrentData.plantGrowthStage.ToString("F1") + "%";
     }
 }
