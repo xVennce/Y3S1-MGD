@@ -18,14 +18,10 @@ public class BambooSellAgent : MonoBehaviour {
         GivePlayerMoney();
     }
     private void CheckSellMultiplier() {
-        //Insert upgrade checking code here
-        //Pseudo code example:
-        //if (Upgrade1 is purchased)
-        //SellMultiplier = 1.5f;
-        SellMultiplier = 1.0f * LoadDataOnStart.CurrentData.GetMultiplierValue(PlayerData.MultiplierNames.SellMultiplier);
+        SellMultiplier = 1.0f * StaticVariables.sellMultiplier;
     }
     private void GivePlayerMoney() {
-        LoadDataOnStart.CurrentData.money += 100.0f * SellMultiplier;
+        LoadDataOnStart.CurrentData.money += 100.0f * (1f + SellMultiplier * 0.1f);
         SaveLoadSystem.Save(LoadDataOnStart.CurrentData);
     }
 }
