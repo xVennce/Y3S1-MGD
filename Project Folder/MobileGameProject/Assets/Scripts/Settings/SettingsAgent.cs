@@ -26,13 +26,24 @@ public class SettingsAgent : MonoBehaviour {
         hasLoadedFromStart = true;
     }
     public void BackToMainMenu() {
+        VibrationAgent.HeavyHapticFeedback();
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
+    public void GoToGameScene() {
+        VibrationAgent.HeavyHapticFeedback();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+    }
+    public void GoToSettingsScene() {
+        VibrationAgent.HeavyHapticFeedback();
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Settings");
+    }
     public void OpenSettingsUi() {
+        VibrationAgent.HeavyHapticFeedback();
         gameCanvas.gameObject.SetActive(false);
         settingsCanvas.gameObject.SetActive(true);
     }
     public void OpenGameUi() {
+        VibrationAgent.HeavyHapticFeedback();
         gameCanvas.gameObject.SetActive(true);
         settingsCanvas.gameObject.SetActive(false);
     }
@@ -46,6 +57,14 @@ public class SettingsAgent : MonoBehaviour {
     }
     public void SetToggles() {
         PlayerData data = LoadDataOnStart.CurrentData;
+
+        if (globalToggle == null) {
+            return;
+        }
+        if (bgmToggle == null) {
+            return;
+        }
+
         if (data.toggleGlobalAudio) {
             globalToggle.isOn = true;
         }
@@ -61,6 +80,7 @@ public class SettingsAgent : MonoBehaviour {
     }
     public void SetToggleGlobal() {
         PlayerData data = LoadDataOnStart.CurrentData;
+        VibrationAgent.HeavyHapticFeedback();
         if (globalToggle.isOn) {
             data.toggleGlobalAudio = true;
             SaveLoadSystem.Save(LoadDataOnStart.CurrentData);
@@ -72,6 +92,7 @@ public class SettingsAgent : MonoBehaviour {
     }
     public void SetToggleBGM() {
         PlayerData data = LoadDataOnStart.CurrentData;
+        VibrationAgent.HeavyHapticFeedback();
         if (bgmToggle.isOn) {
             data.toggleBgmAudio = true;
             SaveLoadSystem.Save(LoadDataOnStart.CurrentData);

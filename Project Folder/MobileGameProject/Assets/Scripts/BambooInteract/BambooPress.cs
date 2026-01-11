@@ -10,10 +10,12 @@ public class BambooPress : MonoBehaviour {
     public float BaseGrowthPerTap = 1.0f;
 
     public void BambooPressed() {
+        VibrationAgent.LightHapticFeedback();
         LoadDataOnStart.CurrentData.plantGrowthStage += 1.0f * StaticVariables.growthMultiplier;
         //Clamps value 0 to 100  
         LoadDataOnStart.CurrentData.plantGrowthStage = Mathf.Clamp(LoadDataOnStart.CurrentData.plantGrowthStage, 0.0f, 100.0f);
         //GameData.GetComponent<GameData>().Money += BaseLevel;
         SaveLoadSystem.Save(LoadDataOnStart.CurrentData);
     }
+
 }
