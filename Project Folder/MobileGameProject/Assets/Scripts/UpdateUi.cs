@@ -19,7 +19,7 @@ public class UpdateUi : MonoBehaviour {
     }
     private void UpdateMoneyText() {
         //Should display money as whole number even though it is a float
-        MoneyText.text = LoadDataOnStart.CurrentData.money.ToString();
+        MoneyText.text = LoadDataOnStart.CurrentData.money.ToString("F1") + "0";
     }
     private void UpdateGrowthPercentText() {
         GrowthPercentText.text = LoadDataOnStart.CurrentData.plantGrowthStage.ToString("F1") + "%";
