@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ShakeDetector : MonoBehaviour {
     [Header("Shake Tuning")]
@@ -12,16 +13,19 @@ public class ShakeDetector : MonoBehaviour {
     private Vector3 smoothedAccel;
     private float nextAllowedTime;
 
-    private void Awake() {
-        smoothedAccel = Input.acceleration;
+    private void OnEnable() {
+        InputSystem.EnableDevice(Accelerometer.current);
+        smoothedAccel = Accelerometer.current.acceleration.ReadValue();
     }
-
+    private void OnDisable() {
+        InputSystem.DisableDevice(Accelerometer.current);
+    }
     private void Update() {
         DetectShake();
     }
 
     private void DetectShake() {
-        Vector3 accel = Input.acceleration;
+        Vector3 accel = Accelerometer.current.acceleration.ReadValue();
 
         //This is a low-pass filter to remove gravity from the accelerometer data and smooth it out by interpolating between the previous smoothed value and the current acceleration
         float lerp = 1f - Mathf.Exp(-lowPassFilter * Time.deltaTime);

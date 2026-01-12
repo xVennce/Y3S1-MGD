@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BambooTilt : MonoBehaviour {
     [Header("Bamboo Sections (bottom to top)")]
@@ -19,9 +20,14 @@ public class BambooTilt : MonoBehaviour {
         baseRot1 = section1.localRotation;
         baseRot2 = section2.localRotation;
     }
-
+    private void OnEnable() {
+        InputSystem.EnableDevice(Accelerometer.current);
+    }
+    private void OnDisable() {
+        InputSystem.DisableDevice(Accelerometer.current);
+    }
     private void Update() {
-        Vector3 tilt = Input.acceleration;
+        Vector3 tilt = Accelerometer.current.acceleration.ReadValue();
 
         float tx = tilt.x;
         float tz = tilt.z;
