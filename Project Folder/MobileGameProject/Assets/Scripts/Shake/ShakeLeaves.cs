@@ -7,7 +7,6 @@ public class ShakeDetector : MonoBehaviour {
     [SerializeField] private float cooldown = 5.0f;
 
     [Header("Leaf Falling Effect")]
-    //[SerializeField] private LeafFallEffect leafFallEffect;
     [SerializeField] private ParticleSystem leafFallParticleSystem;
 
     private Vector3 smoothedAccel;
