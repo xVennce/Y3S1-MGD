@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using TMPro;
 public class UpgradeUi : MonoBehaviour {
     [Header("Upgrade Prices")]
@@ -16,6 +17,8 @@ public class UpgradeUi : MonoBehaviour {
     [SerializeField] private GameObject middlePanel;
     [SerializeField] private GameObject gameMiddlePanel;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource upgradeAudioSource;
 
     [Header("Ui Variables")]
     [SerializeField] private TextMeshProUGUI moneyText;
@@ -48,6 +51,7 @@ public class UpgradeUi : MonoBehaviour {
             data.SetMultiplierValue(PlayerData.MultiplierNames.GrowthMultiplier, newValue);
             data.money -= growthPrice;
             SaveLoadSystem.Save(data);
+            upgradeAudioSource.Play();
         }
     }
     public void IncrementPassiveGrowthLevel() {
@@ -57,6 +61,7 @@ public class UpgradeUi : MonoBehaviour {
             data.SetMultiplierValue(PlayerData.MultiplierNames.PassiveGrowthMultiplier, newValue);
             data.money -= passiveGrowthPrice;
             SaveLoadSystem.Save(data);
+            upgradeAudioSource.Play();
         }
     }
     public void IncrementSellLevel() {
@@ -66,6 +71,7 @@ public class UpgradeUi : MonoBehaviour {
             data.SetMultiplierValue(PlayerData.MultiplierNames.SellMultiplier, newValue);
             data.money -= sellPrice;
             SaveLoadSystem.Save(data);
+            upgradeAudioSource.Play();
         }
     }
     private void SetNewMultipliers() {

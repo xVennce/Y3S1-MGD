@@ -614,6 +614,7 @@ MonoBehaviour:
   canBuySellUpgrade: 0
   middlePanel: {fileID: 554850272}
   gameMiddlePanel: {fileID: 360327893}
+  upgradeAudioSource: {fileID: 307207615}
   moneyText: {fileID: 1579078639}
   growthLevelText: {fileID: 462307772}
   passiveGrowthLevelText: {fileID: 235811612}
@@ -1304,7 +1305,7 @@ GameObject:
   - component: {fileID: 307207614}
   - component: {fileID: 307207615}
   m_Layer: 0
-  m_Name: GlobalTest
+  m_Name: SellAudio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1336,11 +1337,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: d3a1473b1a28e8a4297751ec8114c8a7, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 2ad95d72e4994a346a9f4fd115766320, type: 3}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: 68a931606ea181840bdf891aa69848c6, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -8829,7 +8830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64cc8a40f9848a54c94bf232155b0b4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  database: {fileID: 0}
+  database: {fileID: 11400000, guid: f0a33761ff6919d4a9979ee36980a29d, type: 2}
   context:
     scaleAnimations: 1
     scaleUniformly: 1
@@ -8857,8 +8858,8 @@ MonoBehaviour:
     _serializedList: []
   preview: 0
   useDefaultDatabase: 1
-  useDefaultKeywordDatabase: 1
-  initDatabase: 0
+  useDefaultKeywordDatabase: 0
+  initDatabase: 1
   previewUpdatesPerSecond: 60
   previewTimeScale: 1
 --- !u!1 &850205428
@@ -11885,7 +11886,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 892c4774cf55b4c44967b282a4deca9a, type: 2}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: 76acf4473bcb5e748be6fb7386856d96, type: 3}
+  m_Resource: {fileID: 8300000, guid: 016377817dbdb824eb658d4998c20ee0, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -13363,6 +13364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SellMultiplier: 1
+  sellAudioSource: {fileID: 307207615}
 --- !u!1 &1689103778
 GameObject:
   m_ObjectHideFlags: 0
